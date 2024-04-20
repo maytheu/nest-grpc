@@ -1,14 +1,20 @@
-import { LoginDTO, SignupDTO, UserWithToken } from '@app/core';
+import { LoginDTO, SignupDTO, User, UserWithToken } from '@app/core';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AppService {
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>
+  ) {}
   getData(): { message: string } {
     return { message: 'Hello API' };
   }
 
   async signup(data: SignupDTO): Promise<UserWithToken> {
-    console.log(data);
+    const { email, password, name } = data;
+    this.userRepository.save(data)
     return { email: data.email, name: data.name, token: '' };
   }
 
@@ -16,4 +22,6 @@ export class AppService {
     console.log(data);
     return { email: data.email, name: 'data.name', token: '' };
   }
+
+  private async findUser(email: string) {}
 }
