@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+    rpc Login(LoginDTO) returns (UserWithToken) {}
+    rpc Signup(SignupDTO) returns (UserWithToken) {}
+}
+
+message UserWithToken {
+    string name = 1;
+    string email = 2;
+    string token = 3;
+}
+
+message LoginDTO {
+    string email = 1;
+    string password = 2;
+}
+
+message SignupDTO {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}

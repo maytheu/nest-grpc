@@ -1,0 +1,24 @@
+{
+  "name": "transaction",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/transaction/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "transaction:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "transaction:build:development"
+        },
+        "production": {
+          "buildTarget": "transaction:build:production"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "rate",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rate/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "rate:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rate:build:development"
+        },
+        "production": {
+          "buildTarget": "rate:build:production"
+        }
+      }
+    }
+  }
+}

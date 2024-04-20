@@ -1,0 +1,24 @@
+{
+  "name": "auth",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/auth/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "auth:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "auth:build:development"
+        },
+        "production": {
+          "buildTarget": "auth:build:production"
+        }
+      }
+    }
+  }
+}
