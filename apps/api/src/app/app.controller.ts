@@ -12,12 +12,12 @@ export class AppController {
     return this.appService.getData();
   }
 
-  @Post('signup')
+  @Post('/signup')
   async signup(@Body() data: SignupDTO) {
     return await this.appService.signup(data);
   }
 
-  @Post('login')
+  @Post('/login')
   async login(@Body() data: LoginDTO) {
     return await this.appService.login(data);
   }
