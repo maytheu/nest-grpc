@@ -4,17 +4,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class AppService {
+export class AuthService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>
   ) {}
-  getData(): { message: string } {
-    return { message: 'Hello API' };
-  }
 
   async signup(data: SignupDTO): Promise<UserWithToken> {
     const { email, password, name } = data;
-    this.userRepository.save(data)
+    this.userRepository.save(data);
+    console.log(data);
+    
     return { email: data.email, name: data.name, token: '' };
   }
 
@@ -22,6 +21,4 @@ export class AppService {
     console.log(data);
     return { email: data.email, name: 'data.name', token: '' };
   }
-
-  private async findUser(email: string) {}
 }
