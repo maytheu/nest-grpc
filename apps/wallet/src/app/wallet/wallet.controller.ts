@@ -1,6 +1,7 @@
 import {
-  Empty,
-  Test,
+  CreditDTO,
+  DebitDTO,
+  Wallet,
   WalletServiceController,
   WalletServiceControllerMethods,
 } from '@app/core';
@@ -13,7 +14,11 @@ import { Observable } from 'rxjs';
 export class WalletController implements WalletServiceController {
   constructor(private readonly walletService: WalletService) {}
 
-  async credit(): Promise<Test> {
-    return await this.walletService.credit();
+  async credit(request: CreditDTO): Promise<Wallet> {
+    return this.walletService.credit(request);
+  }
+
+  async debit(request: DebitDTO): Promise<Wallet> {
+    return this.walletService.debit(request);
   }
 }

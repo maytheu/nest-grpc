@@ -8,8 +8,8 @@ import {
 } from 'typeorm';
 import { User } from '@app/core';
 
-@Entity()
-export class Wallet {
+@Entity('Wallet')
+export class WalletEntity {
   @ObjectIdColumn()
   id!: ObjectId;
 
@@ -19,9 +19,6 @@ export class Wallet {
   @OneToOne(() => User)
   @JoinColumn({ name: 'userId' })
   user!: User;
-
-  @Column()
-  currency!: string;
 
   @Column()
   amount!: number;

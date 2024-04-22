@@ -3,11 +3,21 @@ syntax = "proto3";
 package  wallet;
 
 service WalletService {
-    rpc Credit(Empty) returns (Test) {}
+    rpc Credit(CreditDTO) returns (Wallet) {}
+    rpc Debit(DebitDTO) returns (Wallet) {}
 }
 
-message Test {
-    string id = 1;
+message CreditDTO {
+    string email = 1;
+    float amount = 2;
 }
 
-message Empty {}
+message DebitDTO {
+    float amount = 1;
+    string bank = 2;
+    string account = 3;
+}
+
+message Wallet {
+    float balance = 1;
+}

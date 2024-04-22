@@ -21,9 +21,4 @@ export class AppController {
   async login(@Body() data: LoginDTO) {
     return await this.appService.login(data);
   }
-
-  @Get('/wallet/credit')
-  async creditWallet() {
-    return await this.appService.creditWallet();
-  }
 }
