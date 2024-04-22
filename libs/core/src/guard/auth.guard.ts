@@ -19,8 +19,8 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers['authorization'];
     if (!authHeader) return false;
+   
     const jwt = (authHeader as string).split(' ')[1];
-
     return this.authService.send({ cmd: 'verify-jwt' }, { jwt }).pipe(
       switchMap(({ exp }) => {
         if (!exp) return of(false);

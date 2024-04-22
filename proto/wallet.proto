@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package  wallet;
+
+service WalletService {
+    rpc Credit(Empty) returns (Test) {}
+}
+
+message Test {
+    string id = 1;
+}
+
+message Empty {}
