@@ -1,5 +1,7 @@
-export * from './auth';
+export * from './types';
 
 export * from './module';
 
-export * from './entity'
+export * from './entity';
+
+export * from './guard';
