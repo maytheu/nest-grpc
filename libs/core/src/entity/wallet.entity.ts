@@ -6,7 +6,7 @@ import {
   ObjectIdColumn,
   OneToOne,
 } from 'typeorm';
-import { User } from '@app/core';
+import { User } from './user.entity';
 
 @Entity('Wallet')
 export class WalletEntity {

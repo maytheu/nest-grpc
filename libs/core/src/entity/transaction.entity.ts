@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  OneToOne,
+  ManyToOne,
   ObjectId,
   ObjectIdColumn,
 } from 'typeorm';
@@ -16,7 +16,7 @@ export class TransactionEntity {
   @Column()
   userId!: ObjectId;
 
-  @OneToOne(() => User)
+  @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
   user!: User;
 
@@ -24,7 +24,11 @@ export class TransactionEntity {
   type!: string;
 
   @Column()
-  currency!: string;
+  currencyFrom!: string;
+
+  @Column()
+  currencyTo!: string;
+
 
   @Column()
   amount!: number;

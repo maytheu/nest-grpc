@@ -36,7 +36,7 @@ export class WalletService {
         userId: user.id,
         amount,
         type: 'credit',
-        currency: 'NGN',
+        currencyFrom: 'NGN',
       };
       await Promise.all([
         this.walletRepository.save(wallet),
@@ -48,14 +48,14 @@ export class WalletService {
 
   async debit(data: DebitDTO): Promise<Wallet> {
     try {
-      const { account, bank, amount, id } = data;      
+      const { account, bank, amount, id } = data;
       const userId = ObjectId.createFromHexString(id);
       const wallet = await this.walletRepository.findOneBy({ userId });
       if (amount > wallet.amount) return;
 
       // make transfer to bank
       wallet.amount -= amount;
-      const txnData = { userId, amount, type: 'debit', currency: 'NGN' };
+      const txnData = { userId, amount, type: 'debit', currencyFrom: 'NGN' };
       await Promise.all([
         this.walletRepository.save(wallet),
         this.transactionRepository.save(txnData),

@@ -6,8 +6,9 @@ export const transactionProtobufPackage = "transaction";
 
 export interface Transaction {
   currencyFrom: string;
-  CurrencyTo: string;
+  currencyTo: string;
   amount: number;
+  type: string;
 }
 
 export interface Transactions {
@@ -20,7 +21,8 @@ export interface Transactions {
 
 export interface TransactionDTO {
   id: string;
-  currency: string;
+  currencyFrom: string;
+  currencyTo: string;
   amount: number;
 }
 

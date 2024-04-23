@@ -10,8 +10,9 @@ service TransacttionService {
 
 message Transaction {
     string currencyFrom = 1;
-    string CurrencyTo = 2;
+    string currencyTo = 2;
     float amount = 3;
+    string type = 4;
 }
 
 message Transactions {
@@ -24,6 +25,7 @@ message UserDTO {
 
 message TransactionDTO {
     string id = 1;
-    string currency = 2;
-    float amount = 3;
+    string currencyFrom = 2;
+    string currencyTo = 3;
+    float amount = 4;
 }
