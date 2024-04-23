@@ -6,6 +6,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AUTH_PACKAGE_NAME, WALLET_PACKAGE_NAME } from '@app/core';
 import { join } from 'path';
 import { WalletApiModule } from './wallet/wallet-api.module';
+import { TransactionApiModule } from './transaction/transaction-api.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { WalletApiModule } from './wallet/wallet-api.module';
       },
     ]),
     WalletApiModule,
+    TransactionApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
