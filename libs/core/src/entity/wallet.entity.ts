@@ -14,12 +14,12 @@ export class WalletEntity {
   id!: ObjectId;
 
   @Column()
-  userId!: number;
+  userId!: ObjectId;
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'userId' })
   user!: User;
 
-  @Column()
+  @Column({ default: 0 })
   amount!: number;
 }

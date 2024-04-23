@@ -12,7 +12,11 @@ import { WALLET_PACKAGE_NAME } from '@app/core';
 async function bootstrap() {
   const app = NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.GRPC,
-    options: { package: WALLET_PACKAGE_NAME, protoPath: './proto/wallet.proto' },
+    options: {
+      package: WALLET_PACKAGE_NAME,
+      protoPath: './proto/wallet.proto',
+      url: 'localhost:3002',
+    },
   });
 
   (await app).listen();

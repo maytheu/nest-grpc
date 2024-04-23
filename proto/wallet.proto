@@ -10,12 +10,14 @@ service WalletService {
 message CreditDTO {
     string email = 1;
     float amount = 2;
+    bool status = 3;
 }
 
 message DebitDTO {
-    float amount = 1;
-    string bank = 2;
-    string account = 3;
+    string id = 1;
+    float amount = 2;
+    string bank = 3;
+    string account = 4;
 }
 
 message Wallet {

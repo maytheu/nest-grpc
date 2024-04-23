@@ -1,4 +1,10 @@
-import { LoginDTO, SignupDTO, User, UserWithToken } from '@app/core';
+import {
+  LoginDTO,
+  SignupDTO,
+  User,
+  UserWithToken,
+  WalletEntity,
+} from '@app/core';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +15,8 @@ import { Repository } from 'typeorm';
 export class AuthService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    @InjectRepository(WalletEntity)
+    private walletRepository: Repository<WalletEntity>,
     private readonly jwtService: JwtService
   ) {}
 
@@ -20,6 +28,7 @@ export class AuthService {
     const hashPassword = await this.hashPassword(password);
     data.password = hashPassword;
     const newUser = await this.userRepository.save(data);
+    await this.walletRepository.save({ userId: newUser.id });
 
     const token = await this.jwtService.signAsync({ id: newUser.id });
     return { email: data.email, name: data.name, token };

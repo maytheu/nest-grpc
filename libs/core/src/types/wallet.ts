@@ -7,9 +7,11 @@ export const walletProtobufPackage = "wallet";
 export interface CreditDTO {
   email: string;
   amount: number;
+  status: boolean;
 }
 
 export interface DebitDTO {
+  id: string;
   amount: number;
   bank: string;
   account: string;

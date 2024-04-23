@@ -4,12 +4,13 @@ import {
   Inject,
   Injectable,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { ClientProxy } from '@nestjs/microservices';
 import { Observable, catchError, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(@Inject('AUTH_SERVICE') private authService: ClientProxy) {}
+  constructor(private readonly jwtService: JwtService) {}
 
   canActivate(
     context: ExecutionContext
@@ -19,21 +20,16 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers['authorization'];
     if (!authHeader) return false;
-   
-    const jwt = (authHeader as string).split(' ')[1];
-    return this.authService.send({ cmd: 'verify-jwt' }, { jwt }).pipe(
-      switchMap(({ exp }) => {
-        if (!exp) return of(false);
 
-        const TOKEN_EXP_MS = exp * 1000;
+    const token = (authHeader as string).split(' ')[1];
 
-        const isJwtValid = Date.now() < TOKEN_EXP_MS;
-
-        return of(isJwtValid);
-      }),
-      catchError(() => {
-        throw new Error('');
-      })
-    );
+    try {
+      const decoded = this.jwtService.verify(token);
+      console.log(decoded, 'guard');
+      request.user = decoded; 
+      return true;
+    } catch (error) {
+      return false;
+    }
   }
 }

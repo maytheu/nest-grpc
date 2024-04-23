@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { MongodbModule, User } from '@app/core';
+import {  MongodbModule, User, WalletEntity } from '@app/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -11,7 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   controllers: [AuthController],
   imports: [
     MongodbModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, WalletEntity]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({

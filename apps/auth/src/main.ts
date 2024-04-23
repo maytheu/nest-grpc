@@ -13,10 +13,14 @@ import { AUTH_PACKAGE_NAME } from '@app/core';
 async function bootstrap() {
   const app = NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.GRPC,
-    options: { package: AUTH_PACKAGE_NAME, protoPath: './proto/auth.proto' },
+    options: {
+      package: AUTH_PACKAGE_NAME,
+      protoPath: './proto/auth.proto',
+      url: 'localhost:3001',
+    },
   });
 
-  (await app).listen()
+  (await app).listen();
 }
 
 bootstrap();
