@@ -1,6 +1,7 @@
 import {
   CreditDTO,
   DebitDTO,
+  UserDTO,
   Wallet,
   WalletServiceController,
   WalletServiceControllerMethods,
@@ -20,5 +21,8 @@ export class WalletController implements WalletServiceController {
 
   async debit(request: DebitDTO): Promise<Wallet> {
     return this.walletService.debit(request);
+  }
+  async balance(request: UserDTO): Promise<Wallet> {
+    return await this.walletService.balance(request);
   }
 }

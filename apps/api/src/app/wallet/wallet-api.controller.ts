@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   Req,
   UseGuards,
@@ -13,6 +14,13 @@ import { AuthGuard, CreditDTO, DebitDTO, UserInterceptor } from '@app/core';
 export class WalletApiController {
   constructor(private readonly walletService: WalletApiService) {}
 
+  @Get()
+  @UseGuards(AuthGuard)
+  @UseInterceptors(UserInterceptor)
+  async walletBalance(@Req() req: any) {    
+    return await this.walletService.balance(req.user);
+  }
+
   @Post('/credit')
   async creditWallet(@Body() data: CreditDTO) {
     return await this.walletService.creditWallet(data);
@@ -21,7 +29,7 @@ export class WalletApiController {
   @UseGuards(AuthGuard)
   @UseInterceptors(UserInterceptor)
   async debitWallet(@Body() data: DebitDTO, @Req() req: any) {
-    data.id = req.id;
+    data.id = req.user.id;
     return await this.walletService.debitWallet(data);
   }
 }

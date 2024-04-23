@@ -1,6 +1,7 @@
 import {
   CreditDTO,
   DebitDTO,
+  UserDTO,
   WALLET_PACKAGE_NAME,
   WALLET_SERVICE_NAME,
   WalletServiceClient,
@@ -25,5 +26,9 @@ export class WalletApiService implements OnModuleInit {
 
   async debitWallet(data: DebitDTO) {
     return await this.walletService.debit(data);
+  }
+
+  async balance(user: UserDTO) {
+    return await this.walletService.balance(user);
   }
 }

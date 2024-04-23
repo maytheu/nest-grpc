@@ -16,14 +16,7 @@ import { WalletApiModule } from './wallet/wallet-api.module';
         options: {
           package: AUTH_PACKAGE_NAME,
           protoPath: join(__dirname, '../../../proto/auth.proto'),
-        },
-      },
-      {
-        name: WALLET_PACKAGE_NAME,
-        transport: Transport.GRPC,
-        options: {
-          package: WALLET_PACKAGE_NAME,
-          protoPath: join(__dirname, '../../../proto/wallet.proto'),
+          url: 'localhost:3001',
         },
       },
     ]),

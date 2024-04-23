@@ -14,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [WalletService],
   imports: [
     MongodbModule,
-    TypeOrmModule.forFeature([WalletEntity, User]),
+    TypeOrmModule.forFeature([WalletEntity, User, TransactionEntity]),
   ],
 })
 export class WalletModule {}
