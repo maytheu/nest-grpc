@@ -5,6 +5,7 @@ package  wallet;
 service WalletService {
     rpc Credit(CreditDTO) returns (Wallet) {}
     rpc Debit(DebitDTO) returns (Wallet) {}
+    rpc Balance(UserDTO) returns (Wallet) {}
 }
 
 message CreditDTO {
@@ -22,4 +23,8 @@ message DebitDTO {
 
 message Wallet {
     float balance = 1;
+}
+
+message UserDTO {
+    string id = 1;
 }

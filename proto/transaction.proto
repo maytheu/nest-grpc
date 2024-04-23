@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package transaction;
+
+service TransacttionService {
+    rpc BuyCurrency(TransactionDTO) returns (Transaction) {}
+    rpc SellCurrency(TransactionDTO) returns (Transaction) {}
+    rpc AllTransactions(UserDTO) returns (Transactions) {}
+}
+
+message Transaction {
+    string currency = 1;
+    string type = 2;
+    float amount = 3;
+}
+
+message Transactions {
+    repeated Transaction Transactions = 1;
+}
+
+message UserDTO {
+    string id = 1;
+}
+
+message TransactionDTO {
+    string id = 1;
+    string currency = 2;
+    float amount = 3;
+}
