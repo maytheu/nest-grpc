@@ -5,8 +5,8 @@ import { Observable } from "rxjs";
 export const transactionProtobufPackage = "transaction";
 
 export interface Transaction {
-  currency: string;
-  type: string;
+  currencyFrom: string;
+  CurrencyTo: string;
   amount: number;
 }
 

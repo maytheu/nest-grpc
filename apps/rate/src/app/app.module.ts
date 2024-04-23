@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { RateModule } from '../rate/rate.module';
+import { RateModule } from './rate/rate.module';
 
 @Module({
   imports: [RateModule],

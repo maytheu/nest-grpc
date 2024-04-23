@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package rate;
+
+service RateService {
+    rpc ExchangeRate(RateDTO) returns (Rate) {}
+}
+
+message RateDTO {
+    string currencyFrom = 1;
+    string currencyTo = 2;
+    float amount = 3;
+}
+
+message Rate {
+    string currencyFrom = 1;
+    string currencyTo = 2;
+    float result = 3;
+}

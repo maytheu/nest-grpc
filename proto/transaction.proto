@@ -9,8 +9,8 @@ service TransacttionService {
 }
 
 message Transaction {
-    string currency = 1;
-    string type = 2;
+    string currencyFrom = 1;
+    string CurrencyTo = 2;
     float amount = 3;
 }
 
