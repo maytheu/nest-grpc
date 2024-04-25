@@ -12,7 +12,7 @@ import {
   WalletEntity,
 } from '@app/core';
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { ClientGrpc } from '@nestjs/microservices';
+import { ClientGrpc, RpcException } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId } from 'mongodb';
 import { firstValueFrom, map } from 'rxjs';
@@ -50,7 +50,9 @@ export class TransactionService implements OnModuleInit {
         type: txn.type,
       }));
       return { Transactions: allTransactions };
-    } catch (error) {}
+    } catch (error) {
+      throw new RpcException(`500-${error.message}`);
+    }
   }
 
   async buyCurrencyPair(data: TransactionDTO): Promise<Transaction> {
@@ -93,6 +95,8 @@ export class TransactionService implements OnModuleInit {
         amount: res.result,
         type: url,
       };
-    } catch (error) {}
+    } catch (error) {
+      throw new RpcException(`500-${error.message}`);
+    }
   }
 }
