@@ -1,67 +1,67 @@
 version: '3.8'
-  services: 
-    rate:
-      container_name: rate
-      build: 
-        context: ./
-        dockerfile: ./apps/rate/DOCKERFILE
-      ports:
-        - 3004:3004
-      env_file:
-        - .env
-        - ./apps/rate/.env
-      command : npx nx serve rate
+services: 
+  rate:
+    container_name: rate
+    build: 
+      context: ./
+      dockerfile: ./apps/rate/DOCKERFILE
+    ports:
+      - 3004:3004
+    env_file:
+      - .env
+      - ./apps/rate/.env
+    command : npx nx serve rate
 
-    transaction:
-      container_name: transaction
-      build: 
-        context: ./
-        dockerfile: ./apps/transaction/DOCKERFILE
-      ports:
-        - 3003:3003
-      env_file:
-        - .env
-      depends_on:
-        - rate
-      command : npx nx serve transaction
+  transaction:
+    container_name: transaction
+    build: 
+      context: ./
+      dockerfile: ./apps/transaction/DOCKERFILE
+    ports:
+      - 3003:3003
+    env_file:
+      - .env
+    depends_on:
+      - rate
+    command : npx nx serve transaction
 
-    wallet:
-      container_name: wallet
-      build: 
-        context: ./
-        dockerfile: ./apps/wallet/DOCKERFILE
-      ports:
-        - 3002:3002
-      env_file:
-        - .env
-      command : npx nx serve wallet
+  wallet:
+    container_name: wallet
+    build: 
+      context: ./
+      dockerfile: ./apps/wallet/DOCKERFILE
+    ports:
+      - 3002:3002
+    env_file:
+      - .env
+    command : npx nx serve wallet
 
-    auth:
-      container_name: auth
-      build: 
-        context: ./
-        dockerfile: ./apps/auth/DOCKERFILE
-      ports:
-        - 3001:3001
-      env_file:
-        - .env
-      command : npx nx serve auth
+  auth:
+    container_name: auth
+    build: 
+      context: ./
+      dockerfile: ./apps/auth/DOCKERFILE
+    ports:
+      - 3001:3001
+    env_file:
+      - .env
+    command : npx nx serve auth
 
-    api:
-      container_name: api
-      build: 
-        context: ./
-        dockerfile: ./apps/api/DOCKERFILE
-      ports:
-        - 3003:3003
-      env_file:
-        - .env
-      depends_on:
-        - rate
-        - auth
-        - transaction
-        - wallet
-      command : npx nx serve api
+  api:
+    container_name: api
+    build: 
+      context: ./
+      dockerfile: ./apps/api/DOCKERFILE
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - rate
+      - auth
+      - transaction
+      - wallet
+    command : npx nx serve api
 
 
   

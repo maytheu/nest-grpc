@@ -29,6 +29,8 @@ You can access it on localhost:3000/api
 
 Run `npx nx build api` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
 
+Find the [documentation here](https://documenter.getpostman.com/view/8279131/2sA3Bszp2N)
+
 ## Running tasks
 
 To execute tasks with Nx use the following syntax:
