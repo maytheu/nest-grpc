@@ -11,17 +11,16 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { RATE_PACKAGE_NAME } from '@app/core';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
-    {
-      transport: Transport.GRPC,
-      options: {
-        package: RATE_PACKAGE_NAME,
-        protoPath: './proto/rate.proto',
-        url: 'localhost:3004',
-      },
-    }
-  );
+  const app = NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.GRPC,
+    options: {
+      package: RATE_PACKAGE_NAME,
+      protoPath: './proto/rate.proto',
+      url: 'localhost:3004',
+    },
+  });
+
+  (await app).listen();
 }
 
 bootstrap();

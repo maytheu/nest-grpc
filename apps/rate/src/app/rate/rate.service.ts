@@ -16,7 +16,7 @@ export class RateService {
     private httpService: HttpService
   ) {}
 
-  async exchangeRate(rate: RateDTO): Promise<Rate> {
+  async exchangeRate(rate: RateDTO): Promise<Rate> {    
     try {
       const { amount, currencyFrom, currencyTo } = rate;
       const apiKey = this.configService.get<string>('EXCHANGE_KEY');
@@ -35,8 +35,7 @@ export class RateService {
           )
         )
       );
-
-      return data;
+      return (data);
     } catch (error) {}
   }
 }

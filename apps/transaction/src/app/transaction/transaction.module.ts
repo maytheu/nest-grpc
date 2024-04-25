@@ -10,24 +10,25 @@ import {
   WalletEntity,
 } from '@app/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 
 @Module({
   controllers: [TransactionController],
   providers: [TransactionService],
   imports: [
-    MongodbModule,
-    TypeOrmModule.forFeature([User, WalletEntity, TransactionEntity]),
     ClientsModule.register([
       {
         name: RATE_PACKAGE_NAME,
         transport: Transport.GRPC,
         options: {
           package: RATE_PACKAGE_NAME,
-          protoPath: './proto/rate.proto',
+          protoPath: join(__dirname, '../../../proto/rate.proto'),
           url: 'localhost:3004',
         },
       },
     ]),
+    MongodbModule,
+    TypeOrmModule.forFeature([User, WalletEntity, TransactionEntity]),
   ],
 })
 export class TransactionModule {}

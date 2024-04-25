@@ -22,4 +22,7 @@ export class WalletEntity {
 
   @Column({ default: 0 })
   amount!: number;
+
+  @Column()
+  currency!: string;
 }

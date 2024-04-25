@@ -28,7 +28,7 @@ export class AuthService {
     const hashPassword = await this.hashPassword(password);
     data.password = hashPassword;
     const newUser = await this.userRepository.save(data);
-    await this.walletRepository.save({ userId: newUser.id, amount: 0, currency:'NGN' });
+    await this.walletRepository.save({ userId: newUser.id, amount: 0, currency:'USD' });
 
     const token = await this.jwtService.signAsync({ id: newUser.id });
     return { email: data.email, name: data.name, token };

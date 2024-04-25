@@ -21,9 +21,9 @@ export interface Transactions {
 
 export interface TransactionDTO {
   id: string;
-  currencyFrom: string;
-  currencyTo: string;
+  currency: string;
   amount: number;
+  url: string;
 }
 
 export const TRANSACTION_PACKAGE_NAME = "transaction";

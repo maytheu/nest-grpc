@@ -25,7 +25,7 @@ message UserDTO {
 
 message TransactionDTO {
     string id = 1;
-    string currencyFrom = 2;
-    string currencyTo = 3;
-    float amount = 4;
+    string currency = 2;
+    float amount = 3;
+    string url = 4;
 }
