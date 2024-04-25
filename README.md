@@ -12,7 +12,18 @@ comes with a LSP for Vim users.
 
 ## Start the application
 
-Run `npx nx serve api` to start the development server. Happy coding!
+Run `npm install` to install dependency
+copy .sample.env to env 
+
+Run `npx nx serve api` to start the development api server. 
+Run `npx nx serve auth` to start the development auth server. 
+Run `npx nx serve wallet` to start the development wallet server. 
+Run `npx nx serve transaction` to start the development transaction server. 
+Run `npx nx serve rate` to start the development rate server. 
+
+Run multiple server `npx nx run-many -t serve api auth wallet transaction rate`
+
+You can access it on localhost:3000/api
 
 ## Build for production
 
