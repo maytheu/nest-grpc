@@ -77,6 +77,8 @@ export class WalletService {
       const userId = ObjectId.createFromHexString(user.id);
       const wallet = await this.walletRepository.findOneBy({ userId });
       return { balance: wallet.amount };
-    } catch (error) {}
+    } catch (error) {
+      throw new RpcException(`500-${error.message}`);
+    }
   }
 }

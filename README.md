@@ -29,7 +29,24 @@ You can access it on localhost:3000/api
 
 Run `npx nx build api` to build the application. The build artifacts are stored in the output directory (e.g. `dist/` or `build/`), ready to be deployed.
 
+Run `node dist/apps/api/main.js` to run api 
+
 Find the [documentation here](https://documenter.getpostman.com/view/8279131/2sA3Bszp2N)
+
+## Docker
+
+Ensure you hve docker installed on your machine.
+
+Run `npm install` to install dependency.
+
+copy .sample.env to env 
+
+Run `docker-compose build` to build the docker images.
+
+Run `docker-compose up` to spin up docker container
+
+You can access it on localhost:3000/api
+
 
 ## Running tasks
 
