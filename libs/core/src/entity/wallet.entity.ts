@@ -13,7 +13,7 @@ export class WalletEntity {
   @ObjectIdColumn()
   id!: ObjectId;
 
-  @Column()
+  @ObjectIdColumn()
   userId!: ObjectId;
 
   @OneToOne(() => User)

@@ -13,7 +13,7 @@ export class TransactionEntity {
   @ObjectIdColumn()
   id!: ObjectId;
 
-  @Column()
+  @ObjectIdColumn()
   userId!: ObjectId;
 
   @ManyToOne(() => User)
