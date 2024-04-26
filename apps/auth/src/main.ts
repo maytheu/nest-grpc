@@ -5,12 +5,13 @@
 
 import { Logger } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-
+import * as dotenv from 'dotenv';
 import { AppModule } from './app/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AUTH_PACKAGE_NAME } from '@app/core';
 
 async function bootstrap() {
+  dotenv.config()
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {

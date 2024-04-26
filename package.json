@@ -17,6 +17,7 @@
     "@nestjs/typeorm": "^10.0.2",
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "install": "^0.13.0",
     "mongodb": "^5.9.2",
     "reflect-metadata": "^0.1.13",

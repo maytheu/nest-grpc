@@ -9,8 +9,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { TRANSACTION_PACKAGE_NAME } from 'libs/core/src/types';
+import * as dotenv from 'dotenv';
 
 async function bootstrap() {
+  dotenv.config()
   const app = NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.GRPC,
     options: {
