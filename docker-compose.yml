@@ -1,8 +1,8 @@
 version: '3.8'
-services: 
+services:
   rate:
     container_name: rate
-    build: 
+    build:
       context: ./
       dockerfile: ./apps/rate/DOCKERFILE
     ports:
@@ -10,11 +10,10 @@ services:
     env_file:
       - .env
       - ./apps/rate/.env
-    command : npx nx serve rate
 
   transaction:
     container_name: transaction
-    build: 
+    build:
       context: ./
       dockerfile: ./apps/transaction/DOCKERFILE
     ports:
@@ -23,33 +22,30 @@ services:
       - .env
     depends_on:
       - rate
-    command : npx nx serve transaction
 
   wallet:
     container_name: wallet
-    build: 
+    build:
       context: ./
       dockerfile: ./apps/wallet/DOCKERFILE
     ports:
       - 3002:3002
     env_file:
       - .env
-    command : npx nx serve wallet
 
   auth:
     container_name: auth
-    build: 
+    build:
       context: ./
       dockerfile: ./apps/auth/DOCKERFILE
     ports:
       - 3001:3001
     env_file:
       - .env
-    command : npx nx serve auth
 
   api:
     container_name: api
-    build: 
+    build:
       context: ./
       dockerfile: ./apps/api/DOCKERFILE
     ports:
@@ -61,7 +57,5 @@ services:
       - auth
       - transaction
       - wallet
-    command : npx nx serve api
 
 
-  

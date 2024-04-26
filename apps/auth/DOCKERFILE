@@ -7,3 +7,27 @@ COPY package*.json .
 RUN npm install
 
 COPY . .
+
+COPY ../proto proto
+
+RUN npx nx build  auth
+
+
+FROM node:20-alpine3.18
+
+WORKDIR /usr/src/app
+
+COPY package*.json .
+
+RUN npm install --omit=dev
+
+COPY --from=0 /usr/src/app/dist .
+
+COPY ../proto proto
+
+
+EXPOSE 3000
+
+RUN npm install pm2 -g
+
+CMD [ "pm2-runtime", "apps/auth/main.js" ]
